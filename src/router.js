@@ -1,9 +1,9 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 // components
-import App from './components/App';
-import Map from './components/Map';
+import App from './components/App/App';
+import Map from './components/Map/Map';
 
 export default (
   <Router history={browserHistory}>

@@ -1,0 +1,12 @@
+[
+    {
+        "path": "people of the pecos",
+        "img": "pecos.png",
+        "coords": [38.90813299596705, -110.8740234375]
+    },
+    {
+        "path": "something else",
+        "img": "pecos.png",
+        "coords": [40.6306300839918, -101.79931640625001]
+    }
+]
