@@ -19,6 +19,7 @@ config.params = {
   maxZoom: 9,
   minZoom: 6,
   legends: true,
+  scrollWheelZoom: false,
 };
 
 config.tileLayer = {
@@ -37,7 +38,7 @@ class Map extends Component {
       windowHeight: isBrowser ? window.innerHeight : 400,
     };
     this._mapNode       = null;
-    this.getStyles      = this.getStyles.bind(this);
+    this.getHeight      = this.getHeight.bind(this);
   }
 
   componentDidMount() {
@@ -54,13 +55,9 @@ class Map extends Component {
     store.dispatch(actions.map.getAllMarkers());
   }
 
-  getStyles() {
+  getHeight() {
     return {
-      map: {
-        maxWidth: 1000,
-        width: '100%',
-        height: this.state.windowHeight - 40,
-      }
+      height: this.state.windowHeight - 40
     };
   }
 
@@ -79,11 +76,10 @@ class Map extends Component {
   }
 
   render() {
-    const styles  = this.getStyles();
-
+    const setHeight  = this.getHeight();
     return (
       <div id="mapWrap">
-        <div ref={(node) => this._mapNode = node} id="map" style={styles.map} />
+        <div ref={(node) => this._mapNode = node} id="map" style={setHeight} />
         <MapUI map={this.state.map} markers={this.props.markers} />
       </div>
     );
