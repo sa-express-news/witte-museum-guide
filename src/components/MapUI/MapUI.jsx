@@ -7,27 +7,16 @@ import ContentBox from '../ContentBox/ContentBox';
 class MapUI extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contentBoxIsOpen: false,
-    };
     this.showContentBox = this.showContentBox.bind(this);
     this.hideContentBox = this.hideContentBox.bind(this);
   }
 
-  componentDidMount() {
-    this.showContentBox();
-  }
-
-  startTheEngine() {
-    const map = this.props.map;
-  }
-
   showContentBox() {
-    this.setState({contentBoxIsOpen: true});
+    this.props.toggleContentBox(true);
   }
 
   hideContentBox() {
-    this.setState({contentBoxIsOpen: false});
+    this.props.toggleContentBox(false);
   }
 
   render() {
@@ -48,7 +37,7 @@ class MapUI extends Component {
           );
         })}
         <ContentBox 
-          open={this.state.contentBoxIsOpen}
+          open={this.props.contentBoxIsOpen}
           close={this.hideContentBox}
           showContentBox={this.showContentBox}
           content={this.props.page}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import L from 'leaflet';
+import _ from 'lodash';
 
 import store from '../../store';
 import actions from '../../actions';
@@ -37,16 +38,26 @@ class Map extends Component {
       tileLayer: null,
       windowHeight: isBrowser ? window.innerHeight : 400,
       pageId: 0,
+      contentBoxIsOpen: false,
+      panToMarker: false,
     };
-    this._mapNode     = null;
-    this.getHeight    = this.getHeight.bind(this);
-    this.nextPage     = this.nextPage.bind(this);
-    this.iteratePages = this.iteratePages.bind(this);
+    this._mapNode         = null;
+    this.getHeight        = this.getHeight.bind(this);
+    this.nextPage         = this.nextPage.bind(this);
+    this.iteratePages     = this.iteratePages.bind(this);
+    this.toggleContentBox = this.toggleContentBox.bind(this);
+    this.panToMarker      = this.panToMarker.bind(this);
   }
 
   componentDidMount() {
     this.getData();
     if (!this.state.map) this.init(this._mapNode);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.panToMarker) {
+      this.panToMarker(nextState);
+    }
   }
 
   componentWillUnmount() {
@@ -64,20 +75,49 @@ class Map extends Component {
     };
   }
 
+  toggleContentBox(val) {
+    this.setState({ contentBoxIsOpen: val });
+  }
+
   iteratePages() {
     const curr = this.state.pageId,
           last = this.props.page.len - 1;
     return curr === last ? 0 : curr + 1;
   }
 
+  panToMarker(nextState) {
+    const { 
+            map,
+            pageId,
+            panToMarker,
+          }           = nextState,
+          { markers } = this.props,
+          marker      = _.find(markers, ['id', pageId]),
+          coords      = marker.coords.split(','), 
+          zoom        = map.getZoom();
+    map.setView(coords, zoom < 6 ? 6 : zoom);
+    this.setState({ panToMarker: false })
+  }
+
   nextPage(requested) {
     const pageId = typeof requested === 'number' ? requested : this.iteratePages();
     store.dispatch(actions.page.getPage(pageId));
-    this.setState({ pageId });
+    this.setState({ 
+      pageId,
+      panToMarker: true,
+    });
   }
 
-  bindMapEvents(map) {
+  bindMapEvents(map, tileLayer) {
     map.on('click', e => console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng));
+    // tileLayer.once('load', e => {
+    //   const coords = this.props.markers[0].coords.split(',');
+    //   map.once('moveend', e => this.toggleContentBox(true))
+    //   window.setTimeout(() => map.setView(coords, 6), 2000);
+    // })
+
+    // First icon pulses and there's a info box! Also, have Mike send you the full image!!
+    // You can put an arrow tip on the overlay you used for Lyme Disease
   }
 
   init(id) {
@@ -86,7 +126,7 @@ class Map extends Component {
     let map = L.map(id, config.params);
     
     const tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
-    this.bindMapEvents(map);
+    this.bindMapEvents(map, tileLayer);
     this.setState({ map, tileLayer });
   }
 
@@ -100,6 +140,8 @@ class Map extends Component {
           markers={this.props.markers}
           page={this.props.page}
           getNextPage={this.nextPage}
+          toggleContentBox={this.toggleContentBox}
+          contentBoxIsOpen={this.state.contentBoxIsOpen}
         />
       </div>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import L from 'leaflet';
 
 import './Marker.scss';
@@ -14,33 +14,63 @@ const iconPaths = {
   },
 };
 
-const buildIcon = icon => {
-	let result = '';
-	if (icon) {
-		result += '<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">';
-		result += iconPaths[icon]();
-		result += '</svg>';
+class Marker extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			marker: null,
+		}
+		this.buildIcon 	 = this.buildIcon.bind(this);
 	}
-	return result;
-};
 
-const buildCoords = str => str.split(',')
+	componentDidMount() {
+		if (!this.state.marker) {
+			let marker = this.buildMarker();
+			this.addMarkerEvents(marker);
+			this.setState({ marker });
+		}
+	}
 
-export default props => {
-	const svgIcon = buildIcon(props.type),
-				coords 	= buildCoords(props.coords);
+	componentWillUnmount() {
+		this.props.map.removeLayer(this.state.marker);
+	}
 
-	L.marker(coords, {
-		icon: L.divIcon({
-			html: '<div style="background-image: url(' + require(`../../images/icons/${props.img}`) + ');"></div>​' + svgIcon,
-			className: 'marker-icon',
-			iconSize: [40, 40]
-		}),
-		title: props.caption || '',
-	}).addTo(props.map).on('click', e => {
-		props.getNextPage(props.pageId);
-		props.showContentBox();
-		props.map.setView(e.target.getLatLng());
-	});
-	return null;
-};
+	buildIcon(icon) {
+		let result = '';
+		if (icon) {
+			result += '<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">';
+			result += iconPaths[icon]();
+			result += '</svg>';
+		}
+		return result;
+	}
+
+	buildMarker() {
+		const props 	= this.props,
+					svgIcon = this.buildIcon(props.type),
+					coords 	= props.coords.split(',');
+
+		return L.marker(coords, {
+			icon: L.divIcon({
+				html: '<div style="background-image: url(' + require(`../../images/icons/${props.img}`) + ');"></div>​' + svgIcon,
+				className: 'marker-icon',
+				iconSize: [40, 40]
+			}),
+			title: props.caption || '',
+		}).addTo(props.map);
+	}
+
+	addMarkerEvents(marker) {
+		const props = this.props;
+		marker.on('click', e => {
+			props.getNextPage(props.pageId);
+			props.showContentBox();
+		});
+	}
+
+	render() {
+		return null;
+	}
+}
+
+export default Marker;
