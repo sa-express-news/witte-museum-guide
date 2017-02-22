@@ -14,6 +14,14 @@ class MapUI extends Component {
     this.hideContentBox = this.hideContentBox.bind(this);
   }
 
+  componentDidMount() {
+    this.showContentBox();
+  }
+
+  startTheEngine() {
+    const map = this.props.map;
+  }
+
   showContentBox() {
     this.setState({contentBoxIsOpen: true});
   }
@@ -31,14 +39,20 @@ class MapUI extends Component {
               key={key}
               img={marker.img}
               coords={marker.coords}
+              type={marker.type}
+              pageId={marker.id}
               map={this.props.map}
               showContentBox={this.showContentBox}
+              getNextPage={this.props.getNextPage}
             />
           );
-        })};
+        })}
         <ContentBox 
           open={this.state.contentBoxIsOpen}
           close={this.hideContentBox}
+          showContentBox={this.showContentBox}
+          content={this.props.page}
+          getNextPage={this.props.getNextPage}
         />
       </div>
     ) : null;

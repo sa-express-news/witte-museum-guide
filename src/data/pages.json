@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "media": "intro.mov",
+        "title": "Welcome to the 'New Witte'",
+        "copy": "The opening of the Witte Museum’s Susan Naylor Center signifies the completion of a $100 million transformation of the museum’s 90-year-old cultural and historical campus. \r",
+        "type": "video"
+    },
+    {
+        "id": 1,
+        "media": "family-at-work.jpg",
+        "title": "Peco family at work",
+        "type": "photo"
+    },
+    {
+        "id": 2,
+        "media": "adventure-walk.mov",
+        "title": "The Adventure Walk",
+        "copy": "The Adventure Walk will welcome visitors to the grand entrance of the new Witte.",
+        "type": "video"
+    }
+]

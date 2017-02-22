@@ -1,12 +1,20 @@
 [
     {
-        "path": "people of the pecos",
-        "img": "pecos.png",
-        "coords": [38.90813299596705, -110.8740234375]
+        "id": 0,
+        "img": "intro.jpg",
+        "coords": "30.14512718337613, -112.28027343750001",
+        "type": "video"
     },
     {
-        "path": "something else",
-        "img": "pecos.png",
-        "coords": [40.6306300839918, -101.79931640625001]
+        "id": 1,
+        "img": "family-at-work.jpg",
+        "coords": "37.43997405227057, -103.84277343750001",
+        "type": "photo"
+    },
+    {
+        "id": 2,
+        "img": "adventure-walk.jpg",
+        "coords": "30.486550842588485, -119.53125000000001",
+        "type": "video"
     }
 ]

@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from '../../logo.svg';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import './App.scss';
+
+import Nav from '../Nav/Nav';
 
 export default function(props) {
   return (
     <MuiThemeProvider>
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
+        <Nav className="Nav" title="Experience the new Witte Museum" />
         {props.children}
       </div>
     </MuiThemeProvider>

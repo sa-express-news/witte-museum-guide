@@ -14,16 +14,16 @@ const isBrowser = typeof window !== 'undefined';
 
 let config = {};
 config.params = {
-  center: [40.372,-107.955],
-  zoom: 6,
-  maxZoom: 9,
-  minZoom: 6,
+  center: [40.033,-109.515],
+  zoom: 5,
+  maxZoom: 8,
+  minZoom: 5,
   legends: true,
   scrollWheelZoom: false,
 };
 
 config.tileLayer = {
-  uri: 'https://api.mapbox.com/styles/v1/saen-editors/cizepw8wv00bz2sqi7cx6hrpr/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2Flbi1lZGl0b3JzIiwiYSI6ImNpeXVreTZ6YjAwenYycW15d3hoNmp1aTEifQ.OjH869qC5JzcGVVy-rg4JQ',
+  uri: 'https://api.mapbox.com/styles/v1/saen-editors/cizg7b12e00782sn6kncbf4yj/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2Flbi1lZGl0b3JzIiwiYSI6ImNpeXVreTZ6YjAwenYycW15d3hoNmp1aTEifQ.OjH869qC5JzcGVVy-rg4JQ',
   params: {
     minZoom: 5,
   }
@@ -36,9 +36,12 @@ class Map extends Component {
       map: null,
       tileLayer: null,
       windowHeight: isBrowser ? window.innerHeight : 400,
+      pageId: 0,
     };
-    this._mapNode       = null;
-    this.getHeight      = this.getHeight.bind(this);
+    this._mapNode     = null;
+    this.getHeight    = this.getHeight.bind(this);
+    this.nextPage     = this.nextPage.bind(this);
+    this.iteratePages = this.iteratePages.bind(this);
   }
 
   componentDidMount() {
@@ -47,18 +50,30 @@ class Map extends Component {
   }
 
   componentWillUnmount() {
-    // this destroys the Leaflet map object & related event listeners
     this.state.map.remove();
   }
 
   getData() {
     store.dispatch(actions.map.getAllMarkers());
+    store.dispatch(actions.page.getPage(this.state.pageId));
   }
 
   getHeight() {
     return {
-      height: this.state.windowHeight - 40
+      height: this.state.windowHeight - 50
     };
+  }
+
+  iteratePages() {
+    const curr = this.state.pageId,
+          last = this.props.page.len - 1;
+    return curr === last ? 0 : curr + 1;
+  }
+
+  nextPage(requested) {
+    const pageId = typeof requested === 'number' ? requested : this.iteratePages();
+    store.dispatch(actions.page.getPage(pageId));
+    this.setState({ pageId });
   }
 
   bindMapEvents(map) {
@@ -80,7 +95,12 @@ class Map extends Component {
     return (
       <div id="mapWrap">
         <div ref={(node) => this._mapNode = node} id="map" style={setHeight} />
-        <MapUI map={this.state.map} markers={this.props.markers} />
+        <MapUI 
+          map={this.state.map}
+          markers={this.props.markers}
+          page={this.props.page}
+          getNextPage={this.nextPage}
+        />
       </div>
     );
   }
@@ -88,7 +108,8 @@ class Map extends Component {
 
 const mapStateToProps = store => {
   return { 
-    markers: store.markers 
+    markers: store.markers,
+    page: store.page,
   }
 };
 export default connect(mapStateToProps)(Map);
