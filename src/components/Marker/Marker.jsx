@@ -46,13 +46,15 @@ class Marker extends Component {
 	}
 
 	buildMarker() {
-		const props 	= this.props,
-					svgIcon = this.buildIcon(props.type),
-					coords 	= props.coords.split(',');
+		const props 		= this.props,
+					svgIcon 	= this.buildIcon(props.type),
+					coords 		= props.coords.split(',');
+		let html = props.isPulsing ? '<div class="pulsing"></div>' : '';
+		html += '<div style="background-image: url(' + require(`../../images/icons/${props.img}`) + ');"></div>​';
 
 		return L.marker(coords, {
 			icon: L.divIcon({
-				html: '<div style="background-image: url(' + require(`../../images/icons/${props.img}`) + ');"></div>​' + svgIcon,
+				html: html + svgIcon,
 				className: 'marker-icon',
 				iconSize: [40, 40]
 			}),
@@ -61,8 +63,10 @@ class Marker extends Component {
 	}
 
 	addMarkerEvents(marker) {
-		const props = this.props;
+		const props = this.props,
+					pulse = document.querySelector('.pulsing');
 		marker.on('click', e => {
+			pulse.className = 'pulsing hidden';
 			props.getNextPage(props.pageId);
 			props.showContentBox();
 		});

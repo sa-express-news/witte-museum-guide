@@ -8,6 +8,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 8px;
+    font-family: 'Open Sans Condensed', sans-serif;
 
     div {
       display: inline-block
@@ -23,14 +24,30 @@
 
     div.title {
       color: #fff;
-      font-size: 1.3em;
+      font-size: 1.4em;
       font-weight: 200;
       float: left;
-      padding: 4px 12px 0;
+      padding: 0 12px;
     }
 
     div.links {
       float: right;
+      padding-right: 4%;
+
+      div.divider {
+        margin-left: 10px;
+        float: right;
+      }
+
+      a {
+        color: #fff;
+        font-size: 1.4em;
+        font-weight: 200;
+        float: left;
+        cursor: pointer;
+        float: right;
+        text-decoration: none;
+      }
 
       ul {
         display: inline-table;
@@ -64,7 +81,7 @@
     @media screen and (max-width: 767px) {
       div.title {
         font-size: 1em;
-        padding: 8px 8px 0;
+        padding: 6px 8px 0;
       }
 
       div.links {

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import CustomDialog from './CustomDialog';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardMedia, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+
+import ThreeSixty from './ThreeSixty';
 
 import './ContentBox.scss';
 
@@ -22,11 +24,13 @@ class ContentBox extends Component {
 
 	getCardMedia(content) {
 		if (content.type === 'video') {
-			const media = require(`../../videos/${content.media}`);
-			return <video src={media} controls></video>;
+			const media = `https://player.vimeo.com/video/${content.media}?autoplay=1&title=0&byline=0&portrait=0`;
+			return  <iframe src={media} width="533" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>;
 		} else if (content.type === 'photo') {
 			const media = require(`../../images/fullsize/${content.media}`);
-			return <img src={media} />;
+			return <img src={media} className="media-img" alt={content.title} style={{ width: "auto", height: "auto", minWidth: "none" }} />;
+		} else if (content.type === 'pano') {
+			return <ThreeSixty content={content} />;
 		}
 	}
 
@@ -43,7 +47,9 @@ class ContentBox extends Component {
 			      }}
 			      avatar="http://ww3.hdnux.com/photos/34/27/72/7437958/4/35x35.png"
 			    />
-			    <CardMedia>{this.getCardMedia(content)}</CardMedia>
+			    <CardMedia style={{ textAlign: "center" }}>
+			    	{this.getCardMedia(content)}
+			    </CardMedia>
 			    {this.getCardText(content)}
 			    <CardActions>
 			      <FlatButton 

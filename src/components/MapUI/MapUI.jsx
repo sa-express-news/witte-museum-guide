@@ -33,6 +33,7 @@ class MapUI extends Component {
               map={this.props.map}
               showContentBox={this.showContentBox}
               getNextPage={this.props.getNextPage}
+              isPulsing={!key}
             />
           );
         })}

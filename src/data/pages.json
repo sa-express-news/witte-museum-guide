@@ -1,22 +1,120 @@
 [
     {
         "id": 0,
-        "media": "intro.mov",
+        "media": 205119629,
         "title": "Welcome to the 'New Witte'",
         "copy": "The opening of the Witte Museum’s Susan Naylor Center signifies the completion of a $100 million transformation of the museum’s 90-year-old cultural and historical campus. \r",
         "type": "video"
     },
     {
         "id": 1,
-        "media": "family-at-work.jpg",
-        "title": "Peco family at work",
-        "type": "photo"
+        "media": 205119877,
+        "title": "The Valero Great Hall",
+        "copy": "H-E-B Lantern: The ‘New Witte’s’ entry hall is a steel-framed glass cube, which will feature a realistic sculpture of a flying Quetzacoatlus dinosaur with a 29-foot wingspan suspended from a ceiling of LED tiles simulating a Cretaceous period sky.\r",
+        "type": "video"
     },
     {
         "id": 2,
-        "media": "adventure-walk.mov",
-        "title": "The Adventure Walk",
-        "copy": "The Adventure Walk will welcome visitors to the grand entrance of the new Witte.",
+        "media": 205120020,
+        "title": "The Dinosaur Gallery",
+        "copy": "The Naylor Family Dinosaur Gallery: In the first permanent dinosaur gallery at the Witte, visitors will learn about the giant creatures which lived in Texas during the Cretaceous period more than 110 million years ago.\r",
+        "type": "video"
+    },
+    {
+        "id": 3,
+        "media": "dinosaurs.jpeg",
+        "title": "Take a 360 tour of the Dinosaur Gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 4,
+        "media": 205278210,
+        "title": "Chatting with Thomas Adams",
+        "copy": "Thomas Adams is the Dinosaur exhibit curator at the new Witte",
+        "type": "video"
+    },
+    {
+        "id": 5,
+        "media": 205120059,
+        "title": "McLean Family Texas Wild Gallery",
+        "copy": "The Witte’s popular animal gallery returns having been completely reimagined with high-tech, immersive dioramas exploring Texas’ flora and fauna from various regions of the state, from the West Texas mountains to the Gulf coast.  Among the hundreds of animals shown in their natural habitats are a rare ocelot, a bison, a black bear and a red-crowned turkey vulture. Overhead, a unique lighting system simulates passage from dawn to night – complete with a thunderstorm – every 16 seconds.\r",
+        "type": "video"
+    },
+    {
+        "id": 6,
+        "media": "wildlife-one.jpeg",
+        "title": "Take a 360 tour of the Texas Wild Gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 7,
+        "media": "wildlife-two.jpeg",
+        "title": "Take a 360 tour of the Texas Wild Gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 8,
+        "media": "wildlife-three.jpeg",
+        "title": "Take a 360 tour of the Texas Wild Gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 9,
+        "media": 205305793,
+        "title": "Chatting with Helen Holdsworth",
+        "copy": "Helen Holdsworth is the McLean Family Texas Wild Gallery curator at the new Witte",
+        "type": "video"
+    },
+    {
+        "id": 10,
+        "media": 205120087,
+        "title": "Kittie West Nelson Ferguson People of the Pecos Gallery",
+        "copy": "The Kittie West Nelson Ferguson People of the Pecos Gallery: Spanning most of the second floor, this immersive environment reveals the way people lived thousands of years ago in what is now southwest Texas. Visitors can explore rock art shelters and walk through dioramas focused on various daily activities, from food gathering to sacred matters. The gallery includes state of the art touch-screen media that reveals new findings about the rock art narratives and hundreds of artifacts from the Witte Museum’s 90 years of research on prehistoric sites. \r",
+        "type": "video"
+    },
+    {
+        "id": 11,
+        "media": "family-at-work.jpg",
+        "title": "A Pecos family at work",
+        "type": "photo"
+    },
+    {
+        "id": 12,
+        "media": "pecos-one.jpeg",
+        "title": "Take a 360 tour of the People of the Pecos gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 13,
+        "media": "pecos-two.jpeg",
+        "title": "Take a 360 tour of the People of the Pecos gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 14,
+        "media": "pecos-three.jpeg",
+        "title": "Take a 360 tour of the People of the Pecos gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 15,
+        "media": "pecos-four.jpeg",
+        "title": "Take a 360 tour of the People of the Pecos gallery",
+        "copy": "Note: At the time 360 photo was taken, part of the museum was still under construction",
+        "type": "pano"
+    },
+    {
+        "id": 16,
+        "media": 205296160,
+        "title": "Chatting with Harry Shafer",
+        "copy": "Harry Shafer is the Kittie West Nelson Ferguson People of the Pecos Gallery curator",
         "type": "video"
     }
 ]

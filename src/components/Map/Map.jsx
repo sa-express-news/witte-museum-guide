@@ -15,19 +15,15 @@ const isBrowser = typeof window !== 'undefined';
 
 let config = {};
 config.params = {
-  center: [40.033,-109.515],
+  center: [36.809,-110.474],
   zoom: 5,
   maxZoom: 8,
   minZoom: 5,
   legends: true,
-  scrollWheelZoom: false,
 };
 
 config.tileLayer = {
   uri: 'https://api.mapbox.com/styles/v1/saen-editors/cizg7b12e00782sn6kncbf4yj/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2Flbi1lZGl0b3JzIiwiYSI6ImNpeXVreTZ6YjAwenYycW15d3hoNmp1aTEifQ.OjH869qC5JzcGVVy-rg4JQ',
-  params: {
-    minZoom: 5,
-  }
 };
 
 class Map extends Component {
@@ -51,7 +47,7 @@ class Map extends Component {
 
   componentDidMount() {
     this.getData();
-    if (!this.state.map) this.init(this._mapNode);
+    if (!this.state.map) this.init(this._mapNode)
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -62,6 +58,16 @@ class Map extends Component {
 
   componentWillUnmount() {
     this.state.map.remove();
+  }
+
+  setMapSpecs() {
+    const width   = isBrowser ? window.innerWidth : 500,
+          height  = this.state.windowHeight,
+          isLarge = width > 1350 && height > 1199,
+          zoom    = isLarge ? 6 : 5,
+          center  = isLarge ? [39.749, -111.588] : [38.215, -110.474];
+
+    return Object.assign({}, config.params, { zoom, center })
   }
 
   getData() {
@@ -79,17 +85,10 @@ class Map extends Component {
     this.setState({ contentBoxIsOpen: val });
   }
 
-  iteratePages() {
-    const curr = this.state.pageId,
-          last = this.props.page.len - 1;
-    return curr === last ? 0 : curr + 1;
-  }
-
   panToMarker(nextState) {
     const { 
             map,
             pageId,
-            panToMarker,
           }           = nextState,
           { markers } = this.props,
           marker      = _.find(markers, ['id', pageId]),
@@ -97,6 +96,12 @@ class Map extends Component {
           zoom        = map.getZoom();
     map.setView(coords, zoom < 6 ? 6 : zoom);
     this.setState({ panToMarker: false })
+  }
+
+  iteratePages() {
+    const curr = this.state.pageId,
+          last = this.props.page.len - 1;
+    return curr === last ? 0 : curr + 1;
   }
 
   nextPage(requested) {
@@ -108,25 +113,12 @@ class Map extends Component {
     });
   }
 
-  bindMapEvents(map, tileLayer) {
-    map.on('click', e => console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng));
-    // tileLayer.once('load', e => {
-    //   const coords = this.props.markers[0].coords.split(',');
-    //   map.once('moveend', e => this.toggleContentBox(true))
-    //   window.setTimeout(() => map.setView(coords, 6), 2000);
-    // })
-
-    // First icon pulses and there's a info box! Also, have Mike send you the full image!!
-    // You can put an arrow tip on the overlay you used for Lyme Disease
-  }
-
   init(id) {
     if (this.state.map) return;
 
-    let map = L.map(id, config.params);
+    let map = L.map(id, this.setMapSpecs());
     
     const tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
-    this.bindMapEvents(map, tileLayer);
     this.setState({ map, tileLayer });
   }
 

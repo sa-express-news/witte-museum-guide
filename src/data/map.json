@@ -2,19 +2,103 @@
     {
         "id": 0,
         "img": "intro.jpg",
-        "coords": "30.14512718337613, -112.28027343750001",
+        "coords": "29.878755346037977, -114.796142578125",
         "type": "video"
     },
     {
         "id": 1,
-        "img": "family-at-work.jpg",
-        "coords": "37.43997405227057, -103.84277343750001",
-        "type": "photo"
+        "img": "valero-animation.jpg",
+        "coords": "31.728167146023935, -114.74121093750001",
+        "type": "video"
     },
     {
         "id": 2,
-        "img": "adventure-walk.jpg",
-        "coords": "30.486550842588485, -119.53125000000001",
+        "img": "dino-animation.jpg",
+        "coords": "37.57941251343841, -114.56542968750001",
+        "type": "video"
+    },
+    {
+        "id": 3,
+        "img": "dinosaur-pano.jpg",
+        "coords": "39.842286020743394, -115.66406250000001",
+        "type": "photo"
+    },
+    {
+        "id": 4,
+        "img": "dino-curator.jpg",
+        "coords": "41.21172151054787, -113.90625",
+        "type": "video"
+    },
+    {
+        "id": 5,
+        "img": "wildlife-animation.jpg",
+        "coords": "37.19533058280065, -118.03710937500001",
+        "type": "video"
+    },
+    {
+        "id": 6,
+        "img": "wildlife-pano-one.jpg",
+        "coords": "39.436192999314095, -120.54199218750001",
+        "type": "photo"
+    },
+    {
+        "id": 7,
+        "img": "wildlife-pano-two.jpg",
+        "coords": "39.13006024213511, -117.5537109375",
+        "type": "photo"
+    },
+    {
+        "id": 8,
+        "img": "wildlife-pano-three.jpg",
+        "coords": "35.67514743608467, -119.31152343750001",
+        "type": "photo"
+    },
+    {
+        "id": 9,
+        "img": "wildlife-curator.jpg",
+        "coords": "36.94989178681327, -119.88281250000001",
+        "type": "video"
+    },
+    {
+        "id": 10,
+        "img": "pecos-animation.jpg",
+        "coords": "38.85682013474361, -108.63281250000001",
+        "type": "video"
+    },
+    {
+        "id": 11,
+        "img": "family-at-work.jpg",
+        "coords": "38.75408327579141, -106.08398437500001",
+        "type": "photo"
+    },
+    {
+        "id": 12,
+        "img": "pecos-pano-one.jpg",
+        "coords": "36.87962060502676, -107.92968750000001",
+        "type": "photo"
+    },
+    {
+        "id": 13,
+        "img": "pecos-pano-two.jpg",
+        "coords": "36.73888412439431, -105.16113281250001",
+        "type": "photo"
+    },
+    {
+        "id": 14,
+        "img": "pecos-pano-three.jpg",
+        "coords": "35.9602229692967, -104.677734375",
+        "type": "photo"
+    },
+    {
+        "id": 15,
+        "img": "pecos-pano-four.jpg",
+        "coords": "39.53793974517628, -108.01757812500001",
+        "type": "photo"
+    },
+    {
+        "id": 16,
+        "img": "pecos-curator.jpg",
+        "coords": "37.78808138412046, -106.08398437500001",
         "type": "video"
     }
 ]
