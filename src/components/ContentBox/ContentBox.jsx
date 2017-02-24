@@ -25,7 +25,7 @@ class ContentBox extends Component {
 	getCardMedia(content) {
 		if (content.type === 'video') {
 			const media = `https://player.vimeo.com/video/${content.media}?autoplay=1&title=0&byline=0&portrait=0`;
-			return  <iframe src={media} width="533" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>;
+			return  <iframe src={media} width="533" height="300" frameBorder="0" allowFullScreen></iframe>;
 		} else if (content.type === 'photo') {
 			const media = require(`../../images/fullsize/${content.media}`);
 			return <img src={media} className="media-img" alt={content.title} style={{ width: "auto", height: "auto", minWidth: "none" }} />;
