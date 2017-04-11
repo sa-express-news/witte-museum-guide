@@ -43,8 +43,6 @@ class ThreeSixty extends Component {
       panoProvider: panoProvider
     };
 
-    debugger;
-
     return new google.maps.StreetViewPanorama(id, panoOptions);
   }
 
